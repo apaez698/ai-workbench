@@ -114,6 +114,7 @@ export async function gradleTestTool(
     success: commandResult.success,
     summary,
     resolvedPattern,
+    stdout: commandResult.stdout,
     stderr: commandResult.stderr,
   });
 

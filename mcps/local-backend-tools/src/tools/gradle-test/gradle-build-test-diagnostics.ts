@@ -4,6 +4,7 @@ type BuildGradleTestDiagnosticsInput = {
   success: boolean;
   summary: GradleTestSummary;
   resolvedPattern?: string;
+  stdout: string;
   stderr: string;
 };
 
@@ -20,8 +21,16 @@ export function buildGradleTestDiagnostics(
     diagnostics.push(`${input.summary.failed} test(s) failed`);
   }
 
-  if ((input.summary.total ?? 0) === 0) {
+  const isUpToDateRun = /:test\s+UP-TO-DATE/i.test(input.stdout);
+
+  if ((input.summary.total ?? 0) === 0 && !isUpToDateRun) {
     diagnostics.push("No tests were detected or parsed from Gradle output");
+  }
+
+  if (isUpToDateRun) {
+    diagnostics.push(
+      "Gradle test task is UP-TO-DATE; tests were not re-executed",
+    );
   }
 
   if (/No tests found for given includes/i.test(input.stderr)) {
