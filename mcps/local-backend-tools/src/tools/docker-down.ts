@@ -1,6 +1,6 @@
 import { execSafe } from "../utils/exec-safe.js";
 import { getScriptPath, isWindows } from "../utils/os-detector.js";
-import path from "node:path";
+import * as path from "path";
 
 export async function dockerDownTool() {
   const scriptPath = path.resolve(

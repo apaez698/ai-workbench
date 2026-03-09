@@ -17,7 +17,6 @@ const server = new Server({
   version: "1.0.0",
 });
 
-// Define available tools
 const tools: Tool[] = [
   {
     name: "flush_redis",
@@ -72,7 +71,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 });
 
 // Handle tool calls
-server.setRequestHandler(CallToolRequestSchema, async (request) => {
+server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
   try {
     switch (request.params.name) {
       case "flush_redis":
