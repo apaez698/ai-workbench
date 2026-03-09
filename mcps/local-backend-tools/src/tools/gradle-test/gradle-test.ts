@@ -1,11 +1,11 @@
-import { execSafe } from "../utils/exec-safe.js";
-import { getScriptPath, isWindows } from "../utils/os-detector.js";
+import { execSafe } from "../../utils/exec-safe.js";
+import { getScriptPath, isWindows } from "../../utils/os-detector.js";
 import * as path from "path";
 
 export async function gradleTestTool() {
   const scriptPath = path.resolve(
     process.cwd(),
-    getScriptPath("test", "../../scripts/gradle")
+    getScriptPath("test", "../../scripts/gradle"),
   );
 
   let command: string;
@@ -21,8 +21,8 @@ export async function gradleTestTool() {
     content: [
       {
         type: "text",
-        text: result.stdout || "Gradle tests executed."
-      }
-    ]
+        text: result.stdout || "Gradle tests executed.",
+      },
+    ],
   };
 }

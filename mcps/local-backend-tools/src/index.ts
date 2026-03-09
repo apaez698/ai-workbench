@@ -10,7 +10,7 @@ import { flushRedisTool } from "./tools/flush-redis.js";
 import { dockerUpTool } from "./tools/docker-up.js";
 import { dockerDownTool } from "./tools/docker-down.js";
 import { resetPostgresTool } from "./tools/reset-postgres.js";
-import { gradleTestTool } from "./tools/gradle-test.js";
+import { gradleTestTool } from "./tools/gradle-test/gradle-test.js";
 
 const server = new Server({
   name: "local-backend-tools",
@@ -95,8 +95,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
         };
     }
   } catch (error) {
-    const errorMessage =
-      error instanceof Error ? error.message : String(error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
     return {
       content: [
         {
