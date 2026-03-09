@@ -1,0 +1,9 @@
+## MCP: local-backend-tools
+mcps/local-backend-tools/node_modules/
+mcps/local-backend-tools/dist/
+mcps/local-backend-tools/.npm/
+mcps/local-backend-tools/*.tsbuildinfo
+mcps/local-backend-tools/npm-debug.log*
+mcps/local-backend-tools/yarn-debug.log*
+mcps/local-backend-tools/yarn-error.log*
+mcps/local-backend-tools/pnpm-debug.log*

@@ -1,2 +1,3 @@
+#!/bin/bash
 docker compose -f sandboxes/spring-webflux-postgres-redis/docker-compose.yml down
-Write-Host "Local sandbox stopped."
+echo "Local sandbox stopped."

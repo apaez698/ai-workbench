@@ -1,2 +1,3 @@
+#!/bin/bash
 docker exec aiwb-redis redis-cli FLUSHALL
-Write-Host "Redis cache flushed."
+echo "Redis cache flushed."
