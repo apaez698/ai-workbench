@@ -56,46 +56,80 @@ const tools: Tool[] = [
   },
   {
     name: "gradle_test",
-    description: "Run Gradle tests",
+    description:
+      "Run Gradle tests for a project, optionally filtering by package, class, method, or explicit test pattern",
     inputSchema: {
       type: "object" as const,
-      properties: {},
-      required: [],
+      properties: {
+        projectPath: {
+          type: "string",
+          description: "Absolute or relative path to the Gradle project",
+        },
+        packageName: {
+          type: "string",
+          description: "Optional package used to filter tests",
+        },
+        className: {
+          type: "string",
+          description: "Optional test class name used to filter tests",
+        },
+        methodName: {
+          type: "string",
+          description: "Optional test method name used to filter tests",
+        },
+        testPattern: {
+          type: "string",
+          description:
+            "Optional explicit Gradle --tests pattern. Takes precedence over package/class/method",
+        },
+        timeoutMs: {
+          type: "number",
+          description: "Optional timeout in milliseconds",
+        },
+      },
+      required: ["projectPath"],
     },
   },
 ];
 
-// Handle tool listing
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return { tools };
 });
 
-// Handle tool calls
-server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
   try {
-    switch (request.params.name) {
+    const toolName = request.params.name;
+    const args = request.params.arguments ?? {};
+
+    switch (toolName) {
       case "flush_redis":
         return await flushRedisTool();
+
       case "docker_up":
         return await dockerUpTool();
+
       case "docker_down":
         return await dockerDownTool();
+
       case "reset_postgres":
         return await resetPostgresTool();
+
       case "gradle_test":
-        return await gradleTestTool();
+        return await gradleTestTool(args);
+
       default:
         return {
           content: [
             {
               type: "text",
-              text: `Unknown tool: ${request.params.name}`,
+              text: `Unknown tool: ${toolName}`,
             },
           ],
         };
     }
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error);
+
     return {
       content: [
         {
@@ -107,11 +141,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request: any) => {
   }
 });
 
-// Start the server
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.log("local-backend-tools MCP server started");
+  console.error("local-backend-tools MCP server started");
 }
 
 main().catch((error) => {
