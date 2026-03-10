@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "manual": "tsx src/manual-test.ts",
+    "manual:gradle": "tsx src/tools/gradle-test/manual-test-gradle-tool.ts",
     "build": "tsc",
     "test": "vitest run"
   },
@@ -13,11 +14,13 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1"
+  },
   "devDependencies": {
     "@types/node": "^20.10.6",
-    "vitest": "^2.1.8",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.8"
   }
 }

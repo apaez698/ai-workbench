@@ -4,7 +4,7 @@ import {
   ListToolsRequestSchema,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-import { Server } from "@modelcontextprotocol/sdk/server.js";
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 
 import { flushRedisTool } from "./tools/flush-redis.js";
 import { dockerUpTool } from "./tools/docker-up.js";
@@ -12,10 +12,17 @@ import { dockerDownTool } from "./tools/docker-down.js";
 import { resetPostgresTool } from "./tools/reset-postgres.js";
 import { gradleTestTool } from "./tools/gradle-test/gradle-test.js";
 
-const server = new Server({
-  name: "local-backend-tools",
-  version: "1.0.0",
-});
+const server = new Server(
+  {
+    name: "local-backend-tools",
+    version: "1.0.0",
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  },
+);
 
 const tools: Tool[] = [
   {
