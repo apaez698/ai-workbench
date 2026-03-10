@@ -1,10 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
-import { runCommand } from "../../shared/process/run-command";
-import { GradleTestToolInput, GradleTestToolResult } from "./gradle-test-types";
-import { buildGradleTestArgs } from "./gradle-build-test-args";
-import { parseGradleTestOutput } from "./gradle-parse-test-output";
-import { buildGradleTestDiagnostics } from "./gradle-build-test-diagnostics";
+import { runCommand } from "../../shared/process/run-command.js";
+import {
+  GradleTestToolInput,
+  GradleTestToolResult,
+} from "./gradle-test-types.js";
+import { buildGradleTestArgs } from "./gradle-build-test-args.js";
+import { parseGradleTestOutput } from "./gradle-parse-test-output.js";
+import { buildGradleTestDiagnostics } from "./gradle-build-test-diagnostics.js";
 
 function resolveGradleCommand(projectPath: string): string {
   const fileName = process.platform === "win32" ? "gradlew.bat" : "gradlew";

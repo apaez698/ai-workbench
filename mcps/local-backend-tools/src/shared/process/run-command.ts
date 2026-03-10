@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
-import { CommandOutput } from "./command-output";
-import { CommandInput } from "./command-input";
+import { CommandOutput } from "./command-output.js";
+import { CommandInput } from "./command-input.js";
 
 export async function runCommand({
   command,

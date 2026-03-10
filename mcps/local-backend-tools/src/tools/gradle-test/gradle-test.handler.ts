@@ -1,5 +1,5 @@
-import { gradleTestInputSchema } from "./gradle-test.schema";
-import { gradleTestTool } from "./gradle-test-tool.tool";
+import { gradleTestInputSchema } from "./gradle-test.schema.js";
+import { gradleTestTool } from "./gradle-test-tool.tool.js";
 
 export const gradleTestToolDefinition = {
   name: "gradle_test",

@@ -1,4 +1,4 @@
-import { GradleTestSummary } from "./gradle-test-types";
+import { GradleTestSummary } from "./gradle-test-types.js";
 
 type BuildGradleTestDiagnosticsInput = {
   success: boolean;

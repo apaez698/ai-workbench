@@ -1,4 +1,4 @@
-import { TestFilterInput } from "./gradle-test-types";
+import { TestFilterInput } from "./gradle-test-types.js";
 
 export function resolveGradleTestPattern(
   input: TestFilterInput,

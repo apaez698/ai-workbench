@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
+    "start:stdio": "node dist/index.js",
     "manual": "tsx src/manual-test.ts",
     "manual:gradle": "tsx src/tools/gradle-test/manual-test-gradle-tool.ts",
     "build": "tsc",

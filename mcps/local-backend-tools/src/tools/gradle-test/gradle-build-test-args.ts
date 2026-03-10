@@ -1,5 +1,5 @@
-import { resolveGradleTestPattern } from "./gradle-resolve-patterns";
-import { BuildGradleTestArgsInput } from "./gradle-test-types";
+import { resolveGradleTestPattern } from "./gradle-resolve-patterns.js";
+import { BuildGradleTestArgsInput } from "./gradle-test-types.js";
 
 export function buildGradleTestArgs(input: BuildGradleTestArgsInput): {
   args: string[];

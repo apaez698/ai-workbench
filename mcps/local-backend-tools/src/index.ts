@@ -10,7 +10,7 @@ import { flushRedisTool } from "./tools/flush-redis.js";
 import { dockerUpTool } from "./tools/docker-up.js";
 import { dockerDownTool } from "./tools/docker-down.js";
 import { resetPostgresTool } from "./tools/reset-postgres.js";
-import { gradleTestTool } from "./tools/gradle-test/gradle-test.js";
+import { handleGradleTestTool } from "./tools/gradle-test/gradle-test.handler.js";
 
 const server = new Server(
   {
@@ -122,7 +122,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         return await resetPostgresTool();
 
       case "gradle_test":
-        return await gradleTestTool(args);
+        return await handleGradleTestTool(args);
 
       default:
         return {

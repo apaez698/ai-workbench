@@ -1,4 +1,4 @@
-import { GradleTestSummary } from "./gradle-test-types";
+import { GradleTestSummary } from "./gradle-test-types.js";
 
 export function parseGradleTestOutput(output: string): GradleTestSummary {
   const summary: GradleTestSummary = {};
