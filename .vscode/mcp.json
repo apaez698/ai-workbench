@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "local-backend-tools": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/mcps/local-backend-tools/local-backend-tools-stdio.sh"
+      ]
+    }
+  }
+}
