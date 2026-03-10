@@ -11,7 +11,7 @@ import { dockerUpTool } from "./tools/docker-up.js";
 import { dockerDownTool } from "./tools/docker-down.js";
 import { resetPostgresTool } from "./tools/reset-postgres.js";
 import { handleGradleTestTool } from "./tools/gradle-test/gradle-test.handler.js";
-
+import { registerGradleCoverageTool } from "./tools/gradle-coverage/gradle-coverage.js";
 const server = new Server(
   {
     name: "local-backend-tools",
@@ -92,6 +92,29 @@ const tools: Tool[] = [
         timeoutMs: {
           type: "number",
           description: "Optional timeout in milliseconds",
+        },
+      },
+      required: ["projectPath"],
+    },
+  },
+  {
+    name: "gradle_coverage",
+    description:
+      "Run jacocoTestReport and return structured JaCoCo coverage information",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        projectPath: {
+          type: "string",
+          description: "Absolute or relative path to the Gradle project",
+        },
+        packageFilter: {
+          type: "string",
+          description: "Optional package filter",
+        },
+        classFilter: {
+          type: "string",
+          description: "Optional class filter",
         },
       },
       required: ["projectPath"],
